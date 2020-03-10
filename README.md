@@ -1,2 +1,2 @@
 # curso-es6
-Curso es6 de https://rocketseat.com.br/
+Curso de es6 fornecido gratuitamente pela equipe Rocketseat https://rocketseat.com.br/
