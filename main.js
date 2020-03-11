@@ -1,5 +1,21 @@
-const soma = (a = 3, b = 4) => a + b;
+const usuario = {
+    nome: 'Iury',
+    idade: 22,
+    endereco: {
+        cidade: 'Santa Luzia',
+        estado: 'MG'
+    },
+};
 
-console.log(soma(1,2));
-console.log(soma(1));
-console.log(soma());
+const { nome, idade, endereco: { cidade } } = usuario;
+
+console.log(nome);
+console.log(idade);
+console.log(cidade);
+
+function mostraNome({ nome, idade }) {
+    console.log(nome);
+    console.log(idade);
+}
+
+mostraNome(usuario);
