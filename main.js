@@ -1,42 +1,9 @@
-class List {
-    constructor() {
-        this.data = [];
-    }
+const arr = [1, 3, 4, 5, 6];
 
-    add(data) {
-        this.data.push(data);
-        console.log(this.data);
-    }
-}
+const newArr = arr.map(item => item * 2);
 
-class TodoList extends List {
-    constructor() {
-        super();
+console.log(newArr);
 
-        this.usuario = 'Iury';
-    }
+const teste = () => ({ nome: 'Iury' });
 
-    mostraUsuario() {
-        console.log(this.usuario);
-    }
-}
-
-const MinhaLista = new TodoList();
-
-document.getElementById("novotodo").onclick = function() {
-    MinhaLista.add('Novo todo');
-}
-
-MinhaLista.mostraUsuario();
-
-class Matematica {
-    constructor() {
-        this.todos = [];
-    }
-
-    static soma(a, b) {
-        return a + b;
-    }
-}
-
-console.log(Matematica.soma(1, 2));
+console.log(teste());
