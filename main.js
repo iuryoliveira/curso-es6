@@ -1,22 +1,21 @@
-//3.1
-const arr = [1, 2, 3, 4, 5];
+//4.1
+const empresa = {
+    nome: 'Rocketseat',
+    endereco: {
+    cidade: 'Rio do Sul',
+    estado: 'SC',
+    }
+   };
 
-arr.map(item => item + 10);
+const { nome, endereco: { cidade, estado} } = empresa;
 
-//3.2
-const usuario = { nome: 'Diego', idade: 23 };
+console.log(nome); // Rocketseat
+console.log(cidade); // Rio do Sul
+console.log(estado); // SC
 
-const mostraIdade = usuario => usuario.idade;
-mostraIdade(usuario); 
+//4.2
+function mostraInfo({ nome, idade }) {
+    return `${nome} tem ${idade} anos.`;
+}
 
-//3.3
-const nome = "Diego";
-const idade = 23;
-
-const mostraUsuario = (nome = 'Diego', idade = 18) => ({ nome, idade });
-
-mostraUsuario(nome, idade);
-mostraUsuario(nome);
-
-//3.4
-const promise = () => new Promise((resolve, reject) => resolve());
+console.log(mostraInfo({ nome: 'Diego', idade: 23 }));
