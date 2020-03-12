@@ -1,18 +1,22 @@
-const usuarios = [
-    { nome: 'Diego', idade: 23, empresa: 'Rocketseat' },
-    { nome: 'Gabriel', idade: 15, empresa: 'Rocketseat' },
-    { nome: 'Lucas', idade: 30, empresa: 'Facebook' },
-];
+//3.1
+const arr = [1, 2, 3, 4, 5];
 
-const idades = usuarios.map( ( { idade } = usuario ) => idade);
-console.log(idades);
+arr.map(item => item + 10);
 
-const trabalhaNaRocket = usuarios.filter( ( { idade, empresa } = usuario ) => idade > 18 && empresa === 'Rocketseat');
-console.log(trabalhaNaRocket);
+//3.2
+const usuario = { nome: 'Diego', idade: 23 };
 
-const trabalhaNaGoogle = usuarios.find( ({ empresa } = usuario) => empresa === 'Google'); 
-console.log(trabalhaNaGoogle);
+const mostraIdade = usuario => usuario.idade;
+mostraIdade(usuario); 
 
-const calculo = usuarios.map(usuario => ({ ...usuario, idade: usuario.idade * 2})).filter(usuario => usuario.idade <= 50);
+//3.3
+const nome = "Diego";
+const idade = 23;
 
-console.log(calculo);
+const mostraUsuario = (nome = 'Diego', idade = 18) => ({ nome, idade });
+
+mostraUsuario(nome, idade);
+mostraUsuario(nome);
+
+//3.4
+const promise = () => new Promise((resolve, reject) => resolve());
