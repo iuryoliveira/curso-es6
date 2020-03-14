@@ -1,4 +1,8 @@
 {
     "presets": ["@babel/preset-env"],
-    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+    "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/proposal-optional-chaining",
+        "@babel/proposal-nullish-coalescing-operator"
+    ]
 }
