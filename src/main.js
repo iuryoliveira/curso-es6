@@ -1,26 +1,60 @@
+import api from './api';
+
 class App {
     constructor() {
-        this.repositories = [];
+        this.repositories = JSON.parse(localStorage.getItem('list_repos')) || [];
         this.formEl = document.getElementById('repo-form');
         this.listEl = document.getElementById('repo-list');
+        this.inputEl = document.getElementById('repo-input');
         this.registerHandlers();
+        this.render();
     }
 
     registerHandlers() {
         this.formEl.onsubmit = event => this.addRepository(event);
     }
 
-    addRepository(event) {
+    setLoading(loading = true) {
+        if(loading) {
+            let loadingEl = document.createElement('span');
+            loadingEl.appendChild(document.createTextNode('Carregando...'));
+            loadingEl.setAttribute('id', 'loading');
+
+            this.formEl.appendChild(loadingEl);
+        } else {
+            document.getElementById('loading').remove();
+        }
+    }
+
+    async addRepository(event) {
         event.preventDefault();
 
-        this.repositories.push({
-            name: 'rocketseat.com.br',
-            description: 'Tira a ideia do papel e de vida a sua startup',
-            avatar_url: 'https://avatars0.githubusercontent.com/u/28929274?v=4',
-            html_url: '#'
-        });
+        const repoInput = this.inputEl.value;
+        if (repoInput.length === 0) 
+            return;
 
-        this.render();
+        this.setLoading();
+
+        try {
+            const response = await api.get(`/repos/${repoInput}`);
+
+            const {name, description, html_url, owner: { avatar_url } } = response.data;
+
+            this.repositories.push({
+                name,
+                description: description || 'Sem descrição',
+                avatar_url,
+                html_url
+            });
+
+            this.saveStorage();
+            this.render();
+            this.inputEl.value = '';
+
+        } catch (err) {
+            alert('Repostório não encontrado');
+        }
+        this.setLoading(false);
     }
 
     render() {
@@ -47,6 +81,10 @@ class App {
             
             this.listEl.appendChild(itemEl);
         });
+    }
+
+    saveStorage() {
+        localStorage.setItem('list_repos', JSON.stringify(this.repositories));
     }
 }
 
